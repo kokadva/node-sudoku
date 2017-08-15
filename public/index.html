@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/main.js"></script>
+    <title>Sudoku</title>
+</head>
+
+<body>
+<div class="frame">
+    <table>
+        <tr>
+            <td>
+                <table id="main" class="minefield">
+                    <tr>
+                        <td oncontextmenu="flag(this);return false;">
+                            <input class="input" type="text" maxlength="1" pattern="[1-9]">
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
