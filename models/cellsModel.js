@@ -26,8 +26,8 @@ function getCell(id, x, y) {
 
 function putNumber(id, x, y, number) {
     var game = repository.load(id);
-    game['covers'][+(x * 9) + +y]['value'] = number;
-    repository.save(game);
+    game['covers'][parseInt(x * 9) + parseInt(y)]['value'] = number;
+    // repository.save(game);
     return getCell(id, x, y);
 }
 
@@ -36,6 +36,6 @@ function toCell(id, x, y) {
     if (!game) {
         return;
     }
-    var cell = game['covers'][+(x * 9) + +y];
+    var cell = game['covers'][parseInt(x * 9) + parseInt(y)];
     return cell;
 }

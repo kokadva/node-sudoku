@@ -14,7 +14,7 @@
             <td>
                 <table id="main" class="minefield">
                     <tr>
-                        <td oncontextmenu="flag(this);return false;">
+                        <td onfocusout="setNumber(this);">
                             <input class="input" type="text" maxlength="1" pattern="[1-9]">
                         </td>
                     </tr>

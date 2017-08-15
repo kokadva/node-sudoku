@@ -1,4 +1,3 @@
-
 var id = new URLSearchParams(window.location.search).get("id");
 
 if (!id) {
@@ -30,7 +29,7 @@ function loadExisting(id) {
     fetch(gameUrl)
         .then((res) => res.json())
         .then((game) => createTable())
-        .then(()=>fetch(cellsUrl))
+        .then(() => fetch(cellsUrl))
         .then((res) => res.json())
         .then((updates) => updates.forEach(onUpdate));
 }
@@ -48,11 +47,32 @@ function createTable() {
     }
 }
 
+function setNumber(tCell) {
+    let cell = getCell(tCell);
+    if (!cell.value) {
+        return;
+    }
+
+    let url = `${cellsUrl}/${cell.x}.${cell.y}/${cell.value}`;
+    fetch(url, {
+        method: 'PUT'
+    })
+        .then((res) => res.json())
+        .then(onUpdate);
+}
+
 function onUpdate(update, id) {
     document
         .getElementById("main")
         .rows[update.y]
         .cells[update.x]
-        .getElementsByClassName("input")[0].
-        value = update.value === -1 ? '': update.value;
+        .getElementsByClassName("input")[0].value = update.value === -1 ? '' : update.value;
+}
+
+function getCell(cell) {
+    return {
+        x: cell.cellIndex,
+        y: cell.parentNode.rowIndex,
+        value: cell.childNodes[1].value
+    };
 }
